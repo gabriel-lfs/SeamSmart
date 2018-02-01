@@ -17,5 +17,15 @@ public class Referencia {
 	@ManyToOne(targetEntity = Fornecedor.class)
 	private Fornecedor fornecedor;
 	
+	@Column(nullable = false)
+	private String descricao;
+	
+	@Column(nullable = false)
+	private double valorUnitario;
+	
+	@Column(nullable = false)
+	private double ValorTotal;
+	
+	
 	
 }
