@@ -1,18 +1,35 @@
 package tcc.entra21.SeamSmart.entities;
 
-import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Funcionario extends Pessoa {
+public class Funcionario {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+
+	@OneToOne(targetEntity = Pessoa.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Pessoa pessoa;
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "funcionario_endereco", 
+	joinColumns = @JoinColumn(name = "funcionario_id"), 
+							  inverseJoinColumns = 
+				  @JoinColumn(name = "endereco_id"))
+	private List<Endereco> enderecos;
 
 	@Column(nullable = false)
 	private String graducao;
@@ -25,31 +42,20 @@ public class Funcionario extends Pessoa {
 
 	@Column(nullable = false)
 	private String serieCarteiraTrabalho;
-	
-	@Column(nullable = false)
-	private String cargo;
 
-	public String getCargo() {
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Cargo.class)
+	@Column(nullable = false)
+	private Cargo cargo;
+
+	@OneToOne(targetEntity = Login.class, mappedBy = "funcionario")
+	private Login loginUsuario;
+	
+	public Cargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(String cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
-	}
-
-	// Construtor
-	public Funcionario(String cidade, String estado, String cep, String bairro, String rua, Integer numero,
-			String complemento, String nome, Integer cpf, Integer rg, LocalDate dataNascimento, Character sexo,
-			Integer telefone, Integer celular, String email, String graducao, Integer carteiraTrabalho,
-			Integer pisCarteiraTrabalho, String serieCarteiraTrabalho, String cargo) {
-		super(cidade, estado, cep, bairro, rua, numero, complemento, nome, cpf, rg, dataNascimento, sexo, telefone,
-				celular, email);
-		
-		setGraducao(graducao);
-		setCarteiraTrabalho(carteiraTrabalho);
-		setPisCarteiraTrabalho(pisCarteiraTrabalho);
-		setSerieCarteiraTrabalho(serieCarteiraTrabalho);
-		setCargo(cargo);
 	}
 
 	// Getters and Setters
@@ -93,4 +99,27 @@ public class Funcionario extends Pessoa {
 		this.serieCarteiraTrabalho = serieCarteiraTrabalho;
 	}
 
+	public Login getLoginUsuario() {
+		return loginUsuario;
+	}
+
+	public void setLoginUsuario(Login loginUsuario) {
+		this.loginUsuario = loginUsuario;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
 }

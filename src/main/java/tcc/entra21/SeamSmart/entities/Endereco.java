@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public abstract class Endereco {
+public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,18 +33,6 @@ public abstract class Endereco {
 
 	@Column(nullable = true)
 	private String complemento;
-
-	// Construtor
-	public Endereco(String cidade, String estado, String cep, String bairro, String rua, Integer numero,
-			String complemento) {
-		setCidade(cidade);
-		setEstado(estado);
-		setCep(cep);
-		setBairro(bairro);
-		setRua(rua);
-		setNumero(numero);
-		setComplemento(complemento);
-	}
 
 	// Getters and Setters
 	public Integer getId() {

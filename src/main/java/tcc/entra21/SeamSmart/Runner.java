@@ -2,6 +2,7 @@ package tcc.entra21.SeamSmart;
 
 import org.springframework.boot.CommandLineRunner;
 
+
 public class Runner implements CommandLineRunner {
 
 	@Override

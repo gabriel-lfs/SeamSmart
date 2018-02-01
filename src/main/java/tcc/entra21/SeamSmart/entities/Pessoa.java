@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
-public abstract class Pessoa extends Endereco {
+public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,7 @@ public abstract class Pessoa extends Endereco {
 	private Integer rg;
 
 	@Column(nullable = false)
+	@DateTimeFormat
 	private LocalDate dataNascimento;
 
 	@Column(nullable = false)
@@ -38,21 +41,6 @@ public abstract class Pessoa extends Endereco {
 
 	@Column(nullable = true)
 	private String email;
-
-	// Construtor
-	public Pessoa(String cidade, String estado, String cep, String bairro, String rua, Integer numero,
-			String complemento, String nome, Integer cpf, Integer rg, LocalDate dataNascimento, Character sexo,
-			Integer telefone, Integer celular, String email) {
-		super(cidade, estado, cep, bairro, rua, numero, complemento);
-		setNome(nome);
-		setCpf(cpf);
-		setRg(rg);
-		setDataNascimento(dataNascimento);
-		setSexo(sexo);
-		setTelefone(telefone);
-		setCelular(celular);
-		setEmail(email);
-	}
 
 	// Getters and Setters
 	public Integer getId() {
