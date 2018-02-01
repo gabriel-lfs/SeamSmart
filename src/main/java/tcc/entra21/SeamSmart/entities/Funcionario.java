@@ -1,16 +1,12 @@
 package tcc.entra21.SeamSmart.entities;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -18,18 +14,14 @@ import javax.persistence.OneToOne;
 public class Funcionario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@OneToOne(targetEntity = Pessoa.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Pessoa pessoa;
-
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "funcionario_endereco", 
-	joinColumns = @JoinColumn(name = "funcionario_id"), 
-							  inverseJoinColumns = 
-				  @JoinColumn(name = "endereco_id"))
-	private List<Endereco> enderecos;
+	
+	@OneToOne(targetEntity = Endereco.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Endereco endereco;
 
 	@Column(nullable = false)
 	private String graducao;
@@ -115,11 +107,11 @@ public class Funcionario {
 		this.pessoa = pessoa;
 	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }
