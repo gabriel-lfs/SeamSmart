@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Fornecedor {
@@ -29,7 +29,7 @@ public class Fornecedor {
 	@Column(nullable = false)
 	private Integer telefone;
 	
-	@OneToMany(targetEntity = Endereco.class)
+	@OneToOne(targetEntity = Endereco.class)
 	private Endereco endereco;
 
 	
