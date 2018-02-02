@@ -1,6 +1,6 @@
 package tcc.entra21.SeamSmart.entities;
 
-import java.util.Set;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,13 +27,13 @@ public class Referencia {
 	private Fornecedor fornecedor;
 	
 	@Column(nullable = false)
-	private double valorUnitario;
+	private Double valorUnitario;
 	
 	@Column(nullable = false)
-	private double valorTotal;
+	private Double valorTotal;
 	
 	@Enumerated(EnumType.STRING)
-	private Set<Tamanho> tamanhos;
+	private Map<Tamanho, Integer> tamanhos;
 
 	@Enumerated(EnumType.STRING)
 	private PartePeca partePeca;
@@ -70,7 +70,7 @@ public class Referencia {
 		return valorUnitario;
 	}
 
-	public void setValorUnitario(double valorUnitario) {
+	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
 
@@ -78,8 +78,32 @@ public class Referencia {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
+	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public Map<Tamanho, Integer> getTamanhos() {
+		return tamanhos;
+	}
+
+	public void setTamanhos(Map<Tamanho, Integer> tamanhos) {
+		this.tamanhos = tamanhos;
+	}
+
+	public PartePeca getPartePeca() {
+		return partePeca;
+	}
+
+	public void setPartePeca(PartePeca partePeca) {
+		this.partePeca = partePeca;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
 	}
 	
 	
