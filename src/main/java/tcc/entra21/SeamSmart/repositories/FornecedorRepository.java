@@ -8,4 +8,7 @@ import tcc.entra21.SeamSmart.entities.Fornecedor;
 @Repository
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Integer>{
 
+	
+	
+	
 }

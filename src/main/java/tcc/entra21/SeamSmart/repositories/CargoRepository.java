@@ -8,4 +8,6 @@ import tcc.entra21.SeamSmart.entities.Cargo;
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Integer> {
 
+	
+	
 }

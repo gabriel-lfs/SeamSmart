@@ -1,9 +1,17 @@
 package tcc.entra21.SeamSmart.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import tcc.entra21.SeamSmart.util.PartePeca;
+import tcc.entra21.SeamSmart.util.Sexo;
+import tcc.entra21.SeamSmart.util.Tamanho;
 
 @Entity
 public class Referencia {
@@ -23,6 +31,16 @@ public class Referencia {
 	
 	@Column(nullable = false)
 	private double valorTotal;
+	
+	@Enumerated(EnumType.STRING)
+	private Set<Tamanho> tamanhos;
+
+	@Enumerated(EnumType.STRING)
+	private PartePeca partePeca;
+	
+	@Enumerated(EnumType.STRING)
+	private Sexo sexo;
+	
 
 	public Integer getReferencia() {
 		return referencia;
